@@ -1,9 +1,10 @@
-package irem_kadir.Moviesphere.Entity;
+package Starter.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,10 @@ import lombok.NoArgsConstructor;
 public class Genre {
 
     @Id
-    @Column
-    private String id;
+    @Column(name = "genre_id")
+    private Integer genreId;
 
-    @Column
+    @NotBlank
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 }

@@ -1,4 +1,4 @@
-package irem_kadir.Moviesphere.Starter;
+package Starter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

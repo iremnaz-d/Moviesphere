@@ -1,10 +1,8 @@
-package Starter.Entity;
+package starter.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,13 +14,16 @@ import java.util.List;
 public class Actor {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
     private Integer actorId;
 
     @NotBlank
-    @Column(name = "full_name")
+    @Column(name = "full_name", length = 256, nullable = false)
     private String fullName;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "actors")
     private List<Movie> movies;
 }

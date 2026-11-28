@@ -1,4 +1,4 @@
-package Starter.Entity;
+package starter.entity;
 
 
 import jakarta.persistence.*;
@@ -13,17 +13,18 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "users")
+public class Users {
 
     @Id
     @Column(name  ="user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
     @Email
@@ -33,6 +34,13 @@ public class User {
     @OneToMany(mappedBy = "userId")
     private List<Review> reviews;
 
+    /**
+    SELECT m.*
+    FROM users u
+    JOIN favourite_list fl ON u.user_id = fl.user_id     -- Step 1: joinColumns
+    JOIN movie m          ON fl.movie_id = m.movie_id    -- Step 2: inverseJoinColumns
+    WHERE u.user_id = ?;
+     */
     @ManyToMany
     @JoinTable(
             name = "favourite_list",

@@ -1,10 +1,8 @@
-package Starter.Entity;
+package starter.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,6 +13,7 @@ import java.util.List;
 @Table(name = "director")
 public class Director {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "director_id")
     private Integer directorId;
 
@@ -23,6 +22,8 @@ public class Director {
     private String fullName;
 
     @ManyToMany(mappedBy = "directors")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Movie> movies;
 
 }
